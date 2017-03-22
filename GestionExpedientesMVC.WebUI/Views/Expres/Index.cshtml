@@ -1,0 +1,49 @@
+﻿@using GestionExpedientesMVC.Domain.Entities
+@model IEnumerable<Exprs>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<form id="form33">
+    First name:<br>
+    <input id="inputFisrtNameID" type="text" name="firstname" value="Mickey">
+    <br>
+    Last name:<br>
+    <input type="text" name="lastname" value="Mouse">
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+
+<p>If you click the "Submit" button, the form-data will be sent to controller call Expres.</p>
+<script type="text/javascript">
+    $(function () {
+        $("#form33").submit(function () {
+            var searchTerm = $("#inputFisrtNameID").val();
+            $.ajax({
+                url: "/Expres/Index",
+                type: "POST",
+                data: {'pResultado' : searchTerm},
+                success: function (result) {
+                    alert("Mandado");
+
+                }
+            });
+            return false;
+        });
+    });
+
+</script>
+
+
+@foreach (var p in Model)
+{
+    <div class="well">
+        @p.ID    
+        <h3 class="btn-info">@p.EXP_CODIGO</h3>
+        @p.EXP_TITULO
+        <span class="pull-right label label-primary">@p.EXP_IMP_INI.ToString("c")</span>
+    </div>
+}
