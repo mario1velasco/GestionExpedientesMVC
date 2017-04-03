@@ -16,7 +16,7 @@ namespace GestionExpedientesMVC.WebUI
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Expres", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "JQuery", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

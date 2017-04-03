@@ -1,0 +1,81 @@
+﻿@using GestionExpedientesMVC.Domain.Entities
+@model IEnumerable<Exprs>
+
+<h2>JAVASCRIPT Index</h2>
+<script>
+    function creaBoton() {
+      var i
+      for (i = 0; i <= 10; i++) {
+      	var btn = document.createElement("");
+        var t = document.createTextNode("CLICK ME");
+        btn.appendChild(t);
+        var element = document.getElementById("div1");
+        element.appendChild(btn);
+        document.write(i)
+        document.write("<br>")
+      }
+    }
+    function creaTexto(tipo, destino, valor, palabras) {
+        //document.write(palabras.toString());
+        var parrafo = document.createElement(tipo);
+        var texto = document.createTextNode(valor.toString());
+        parrafo.appendChild(texto);
+        var element = document.getElementById(destino);
+        element.appendChild(parrafo);
+    }
+
+    function creaLabel(valor) {
+        var i
+        for (i = 0; i <= 10; i++) {
+            alert(valor);
+            creaTexto("h1", "div1", "valor");
+            creaTexto("h3", "div1", "EXP_TITULO");
+            creaTexto("span", "div1", "EXP_IMP_INI");
+        }
+        //document.getElementById("div1");
+    }
+</script>
+
+
+<p>Muestra de datos.</p>
+
+    <div id="div1" class="well">
+        ID:
+        <form id="frID" class="alert-success">
+            <input id="cbID" type="text" value="Introduce ID"/>
+            <br>
+            <input type="submit" value="Mandar" />
+        </form>
+            
+            <script type="text/javascript">
+            @foreach (var p in Model)
+            {
+                <text>
+                    document.write("<h1>Importe = </h1>");
+                    creaTexto("h1", "div1", @p.EXP_IMP_INI, "EXP_IMPINI=");
+                    document.write("<h1>EXP_CODIGO = </h1>");
+                    creaTexto("h1", "div1", @p.EXP_CODIGO, "EXP_CODIGO=");
+                </text>
+            }
+        </script>
+    </div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#frID").submit(function () {
+            var searchTerm = $("#cbID").val();
+            $.ajax({
+                url: "/JScript/FiltrarID",
+                type: "POST",
+                data: {'pResultado' : searchTerm},
+                success: function (result) {
+                    $("#resultado").html('');
+                    alert(result);                    
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<div id="resultado"></div>

@@ -1,0 +1,22 @@
+﻿<h2>JQUERY</h2>
+<div id="productos">
+    <div class="prod">
+        Producto predeterminado
+        <br>
+        <a href="#" class="cerrarprod">cerrar</a>
+    </div>
+</div>
+<div>
+    <input type="submit" id="btnAnadir" value="Pulsame"/>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#productos").on("click", "a.cerrarprod", function(e){
+            e.preventDefault();
+            $(this).parent().remove();
+        });
+        $('#btnAnadir').click(function (e) {
+            $("#productos").append('<div class="prod">MiProducto<br><a href="#" class="cerrarprod">cerrar</a></div>');
+        });
+    });
+</script>

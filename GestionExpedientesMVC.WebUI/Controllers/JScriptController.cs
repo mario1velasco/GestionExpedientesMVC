@@ -7,30 +7,21 @@ using System.Web.Mvc;
 
 namespace GestionExpedientesMVC.WebUI.Controllers
 {
-    public class ExpresController : Controller
+    public class JScriptController : Controller
     {
         private IExprsRepository repository;
-        public ExpresController(IExprsRepository iRepository)
+        public JScriptController(IExprsRepository iRepository)
         {
             repository = iRepository;
         }
-
-        public ActionResult Index(int pResultado=0)
+        // GET: JScript
+        public ActionResult Index()
         {
-            int resultado = pResultado;
-            if (resultado == 0)
-            {
-                return View(repository.Expres);
-            }
-            else
-            {
-                return View(repository.Expres.Where(p => p.ID == resultado));
-            }
-            //return View(repository.Expres);
+            return View(repository.Expres);
         }
 
         [HttpPost]
-        public ViewResult Filtrado(int pResultado)
+        public ViewResult FiltrarID(int pResultado)
         {
             int resultado = pResultado;
             //NO FUNCIONA PORQUE AJAX SOLO VUELVE A LA MISMA VISTA

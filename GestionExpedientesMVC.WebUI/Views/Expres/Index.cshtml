@@ -6,6 +6,30 @@
 }
 
 <h2>Index</h2>
+@Html.ActionLink("Ir a Index con Resultado = 4", "Index", "Expres", new { pResultado =4},null)
+<script>
+    function creaBoton() {
+        alert("mario");
+        for (var i = 0; i == 5; i++) {
+            alert("hola");
+            var btn = document.createElement("BUTTON");        // Create a <button> element
+            var t = document.createTextNode("CLICK ME");       // Create a text node
+            btn.appendChild(t);                                // Append the text to <button>
+            var element = document.getElementById("div1");
+            element.appendChild(btn);
+        }
+
+    }
+</script>
+<div id="div1" class="well">
+    <script>
+        creaBoton();
+    </script>
+    <!--  <form name="formu1">
+        <input type="text" />
+    </form>-->
+</div>
+
 
 <form id="form33">
     First name:<br>
@@ -17,13 +41,14 @@
     <input type="submit" value="Submit">
 </form>
 
+
 <p>If you click the "Submit" button, the form-data will be sent to controller call Expres.</p>
 <script type="text/javascript">
     $(function () {
         $("#form33").submit(function () {
             var searchTerm = $("#inputFisrtNameID").val();
             $.ajax({
-                url: "/Expres/Index",
+                url: "/Expres/Filtrado",
                 type: "POST",
                 data: {'pResultado' : searchTerm},
                 success: function (result) {
